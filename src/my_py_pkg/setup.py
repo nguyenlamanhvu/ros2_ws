@@ -27,7 +27,10 @@ setup(
             "number_counter = my_py_pkg.number_counter:main",
             "add_two_ints_server = my_py_pkg.add_two_ints_server:main",
             "add_two_ints_client = my_py_pkg.add_two_ints_client:main",
-            "reset_counter = my_py_pkg.reset_counter:main"
+            "reset_counter = my_py_pkg.reset_counter:main",
+            "hw_status_publisher = my_py_pkg.hw_status_publisher:main",
+            "led_panel = my_py_pkg.led_panel:main",
+            "battery = my_py_pkg.battery:main"
         ],
     },
 )
