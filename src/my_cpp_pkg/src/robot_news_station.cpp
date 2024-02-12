@@ -7,8 +7,10 @@ using namespace std;
 class RobotNewsStationNode : public Node 
 {
 public:
-    RobotNewsStationNode() : Node("robot_news_station") , robot_names_("C3D3")
+    RobotNewsStationNode() : Node("robot_news_station") 
     {
+        this->declare_parameter("robot_name","C3D3");
+        robot_names_ = this->get_parameter("robot_name").as_string();
         publisher_ = this->create_publisher<example_interfaces::msg::String>("robot_news",10);
         timer_ = this->create_wall_timer(chrono::milliseconds(500),
                                             bind(&RobotNewsStationNode::publishNews,this));

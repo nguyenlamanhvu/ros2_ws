@@ -10,8 +10,10 @@ using placeholders::_2;
 class LedPanelNode : public Node 
 {
 public:
-    LedPanelNode() : Node("led_panel"), led_states(3,0)     //init led_states[0],led_states[1],led_states[2]: 0
+    LedPanelNode() : Node("led_panel")//, led_states(3,0)     //init led_states[0],led_states[1],led_states[2]: 0
     {
+        this->declare_parameter("led_states",vector<int64_t>{0,0,0});
+        led_states = this->get_parameter("led_states").as_integer_array();
         led_panel_publisher_ = this->create_publisher<my_robot_interfaces::msg::LedState>("led_panel_state",10);
         led_state_timer_ = this->create_wall_timer(chrono::seconds(4),bind(&LedPanelNode::led_panel_publish,this));
         set_led_service_ = this->create_service<my_robot_interfaces::srv::SetLed>("set_led",

@@ -7,7 +7,9 @@ from example_interfaces.msg import String
 class RobotNewsStationNode(Node): 
     def __init__(self):
         super().__init__("robot_news_station")
-        self.robot_name_ = "C3PO"
+        self.declare_parameter("robot_name","C3P0")
+        self.robot_name_ = self.get_parameter("robot_name").value
+        
         self.publishers_ = self.create_publisher(String,"robot_news",10)        #(msg_type,topic_name,buffer)
         self.timer_ = self.create_timer(0.5,self.publish_news)
         self.get_logger().info("Robot news has been started")
